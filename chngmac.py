@@ -33,16 +33,17 @@ def adjust_mac_len(m):
 	return parse_mac(ret_mac)
 
 def chngmac():
-	mac=sys.argv[1].lower()
-	sp.run([ "sudo", "ip", "link", "set", "wlan0", "down" ])
-	if mac == "":
-		sp.run([ "sudo", "macchanger", "-r", "-p", "wlan0" ])
-	else:
-		if len(mac) != 17 or len(mac) != 12:
-			mac = adjust_mac_len(mac)
-		mac=parse_mac(mac)
-		sp.run([ "sudo", "macchanger", "-m", mac, "-p", "wlan0" ])
-	sp.run([ "sudo", "ip", "link", "set", "wlan0", "up" ])
+        sp.run([ "sudo", "ip", "link", "set", "wlan0", "down" ])
+        if len(sys.argv) == 1:
+                sp.run([ "sudo", "macchanger", "-r", "-p", "wlan0" ])
+        else:
+                mac=str(sys.argv[1])
+                if len(mac) != 17 or len(mac) != 12:
+                        mac = adjust_mac_len(mac)
+                sp.run([ "sudo", "macchanger", "-m", mac, "-p", "wlan0" ])
+        sp.run([ "sudo", "ip", "link", "set", "wlan0", "up" ])
+
+
 
 if __name__ == "__main__":
 	chngmac()
