@@ -8,4 +8,4 @@ As long as the input Chars are in the hex charset, it will try to change your MA
 
 You need to have Python3 and the macchanger installed for this to work
 
-The idea comes from BlackArch's torctl's chngmac, which quickly randomizes your MAC. 
+Do with it whatever you want
