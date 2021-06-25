@@ -38,10 +38,9 @@ def chngmac():
 	if mac == "":
 		sp.run([ "sudo", "macchanger", "-r", "-p", "wlan0" ])
 	else:
-		if len(mac) != 12 or len(mac) != 17:
+		if len(mac) != 17 or len(mac) != 12:
 			mac = adjust_mac_len(mac)
-		elif mac[2] != ":":
-			mac=parse_mac(mac)
+		mac=parse_mac(mac)
 		sp.run([ "sudo", "macchanger", "-m", mac, "-p", "wlan0" ])
 	sp.run([ "sudo", "ip", "link", "set", "wlan0", "up" ])
 
